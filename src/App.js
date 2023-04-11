@@ -3,17 +3,27 @@ import { Route, Routes } from 'react-router'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import Contact from './pages/Contact'
-import Header from './Components/Header'
+import RootLayOut from './pages/RootLayOut'
+import Sample from './pages/Sample'
+import NotFound from './pages/NotFound'
 
 const App = () => {
   return (
     <>
-      <Header />
-      <Routes>
 
-        <Route path='/' element={<HomePage />} />
-        <Route path='about' element={<AboutPage />} />
-        <Route path='contact' element={<Contact />} />
+      <Routes>
+        <Route path='/' element={<RootLayOut />}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='about' element={<AboutPage />} >
+            <Route path='sample' element={<Sample />} />
+          </Route>
+          <Route path='contact' element={<Contact />} />
+
+          <Route path='*' element={<NotFound />} />
+
+        </Route>
+
+
 
       </Routes>
     </>
