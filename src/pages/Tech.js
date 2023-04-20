@@ -6,8 +6,7 @@ const Tech = () => {
     <>
 
       <h1 className='text-center text-3xl font-bold mb-11'>Technologies I use</h1>
-      <div className='grid grid-cols-4 px-7 justify-items-center gap-y-4'>
-
+      <div className='grid grid-cols-4 px-7 justify-items-center gap-y-4    md:grid-cols-2 sm:grid-cols-1'>
 
         <DiAndroid className='text-center' size={200} />
         <DiCss3 size={200} />
