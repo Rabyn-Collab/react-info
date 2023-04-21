@@ -9,7 +9,9 @@ import AddForm from './Components/AddForm'
 const App = () => {
   return (
     <>
+
       <AddForm />
+
 
       {/* <Routes>
         <Route path='/' element={<RootLayOut />}>
@@ -17,8 +19,6 @@ const App = () => {
           <Route path='about' element={<AboutPage />} />
           <Route path='*' element={<NotFound />} />
         </Route>
-
-
 
       </Routes> */}
     </>

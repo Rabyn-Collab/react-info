@@ -7,6 +7,8 @@ const HomePage = () => {
   return (
     <div>
 
+
+
       <Display />
       <Tech />
       <Intro />

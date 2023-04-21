@@ -2,13 +2,13 @@ import React from 'react'
 
 const Display = () => {
   return (
-    <div className='grid grid-cols-2 items-center px-10 sm:grid-cols-1'>
+    <div className='grid grid-cols-2 items-center px-10 msm:grid-cols-1'>
       <div className="display-image h-[500px]">
         <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_0mifx6b5.json" background="transparent" speed="1" loop autoplay></lottie-player>
       </div>
 
 
-      <div className="info space-y-2 sm:text-center">
+      <div className="info space-y-2 msm:text-center">
 
         <h1 className='text-2xl font-bold'>Hi, I am John </h1>
         <h3 className='text-pink-700'>Some Dev, Freelancer, Rounder</h3>
