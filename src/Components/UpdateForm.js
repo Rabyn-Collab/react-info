@@ -1,5 +1,4 @@
 import React from 'react'
-
 import {
   Button,
   Checkbox,
@@ -9,19 +8,24 @@ import {
   Select,
   Textarea
 } from "@material-tailwind/react";
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router'
+import { useNavigate } from 'react-router';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { addUser } from '../features/infoSlice';
-import { useNavigate } from 'react-router';
+
 import { nanoid } from '@reduxjs/toolkit';
 
 
 
 
 
-
-const AddForm = () => {
+const UpdateForm = () => {
+  const { id } = useParams();
+  const state = useSelector((store) => store.info);
+  console.log(state);
+  const info = state.find((i) => i.id === id);
   const dispatch = useDispatch();
   const nav = useNavigate();
 
@@ -33,32 +37,31 @@ const AddForm = () => {
     skills: Yup.array().required('Required').length(3),
     country: Yup.string().required('cointry is Required'),
     detail: Yup.string().required('deatil is required'),
-    // image: Yup.mixed().test('fileType', 'Invalid file type', (value) =>
-    //   value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
-    // ).test('fileSize', 'File too large', (value) =>
-    //   value && value.size <= 10 * 1024 * 1024 // 10 MB
-    // )
+    image: Yup.mixed().test('fileType', 'Invalid file type', (value) =>
+      value && ['image/jpeg', 'image/png', 'image/jpg'].includes(value.type)
+    ).test('fileSize', 'File too large', (value) =>
+      value && value.size <= 10 * 1024 * 1024 // 10 MB
+    )
   });
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      name: '',
-      gender: '',
+      email: info.email,
+      name: info.name,
+      gender: info.gender,
       skills: [],
-      country: '',
-      detail: '',
-      review: '',
+      country: info.country,
+      detail: info.detail,
+      review: info.review,
       id: nanoid()
       // image: null
 
     },
     onSubmit: (val) => {
-      dispatch(addUser(val));
-      nav(-1);
+
 
     },
-    // validationSchema: infoSchema
+    validationSchema: infoSchema
   });
 
   const radioData = [
@@ -95,7 +98,7 @@ const AddForm = () => {
           <h1>Your Gender</h1>
           <div className='flex gap-10'>
             {radioData.map((d) => {
-              return <Radio key={d.id} id={d.id} name={d.name} label={d.label} value={d.value} onChange={formik.handleChange} />;
+              return <Radio key={d.id} id={d.id} name={d.name} label={d.label} value={d.value} checked={d.value === info.gender ? true : false} onChange={formik.handleChange} />;
             })}
 
           </div>
@@ -157,8 +160,8 @@ const AddForm = () => {
         </div>
 
         <div className="w-96 space-y-2">
-          <Textarea value={formik.values.detail} onChange={formik.handleChange} label="Your Detail" />
-          {formik.errors.detail && formik.touched.detail && <h1 className='text-pink-500'>{formik.errors.detail}</h1>}
+          <Textarea label="Your Detail" />
+          {formik.errors.name && formik.touched.name && <h1 className='text-pink-500'>{formik.errors.name}</h1>}
         </div>
 
         <Button type='submit'>Submit</Button>
@@ -169,4 +172,4 @@ const AddForm = () => {
   )
 }
 
-export default AddForm
+export default UpdateForm

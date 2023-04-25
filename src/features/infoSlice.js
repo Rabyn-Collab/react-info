@@ -1,37 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-
-
-
+import { crudInfo, getInfo } from "./localstorage";
 
 
 const infoSlice = createSlice({
   name: 'info',
-  initialState: [],
+  initialState: getInfo(),
   reducers: {
 
-    addInfo: (action, state) => {
-      state = [...state, state.payload];
+    addUser: (state, action) => {
+      state.push(action.payload);
+      crudInfo(state);
     }
 
 
 
   }
-})
+});
 
-
-
-export const { addInfo } = infoSlice.actions;
-
+export const { addUser } = infoSlice.actions;
 export default infoSlice.reducer;
-
-
-
-
-
-
-
-
-
-
 

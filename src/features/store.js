@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import TodoReducer from './infoSlice'
-
+import InfoReducer from './infoSlice';
 
 
 
 export const store = configureStore({
-  info: TodoReducer
+  reducer: {
+    info: InfoReducer
+  }
 })
