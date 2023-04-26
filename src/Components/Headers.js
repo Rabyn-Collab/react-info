@@ -5,7 +5,7 @@ const Headers = () => {
   return (
     <div className='flex bg-black text-white px-9 justify-between py-2 items-center'>
 
-      <h1 className='text-xl'>Logo</h1>
+      <NavLink to='/' className='text-xl'>Logo</NavLink>
 
       <nav>
         <NavLink to='add' >Add Info</NavLink>

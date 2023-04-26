@@ -9,6 +9,11 @@ import UpdateForm from './Components/UpdateForm'
 
 const App = () => {
 
+  // let m = [{ id: 1, title: 'hello' }, { id: 2, title: 'cio' }]
+
+  // m = m.map((d) => d.id === 1 ? { id: 1, title: 'welcome' } : d);
+  // console.log(m);
+
   return (
     <>
 
