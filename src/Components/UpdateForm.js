@@ -25,9 +25,9 @@ const UpdateForm = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { id } = useParams();
-  const state = useSelector((store) => store.info);
+  const { infos } = useSelector((store) => store.info);
   const [isVal, setVal] = useState(false);
-  const info = state.find((s) => s.id === id);
+  const info = infos.find((s) => s.id === id);
 
 
   const infoSchema = Yup.object().shape({

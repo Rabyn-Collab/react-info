@@ -1,18 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { crudInfo, getInfo } from "./localstorage";
 
+const initialState = {
+  infos: getInfo()
+}
 
 const infoSlice = createSlice({
   name: 'info',
-  initialState: getInfo(),
+  initialState,
   reducers: {
     addUser: (state, action) => {
-      state.push(action.payload);
-      crudInfo(state);
+      state.infos.push(action.payload);
+      crudInfo(state.infos);
     },
     updateUser: (state, action) => {
-      state = state.map((m) => m.id === action.payload.id ? action.payload : m)
-      crudInfo(state);
+      state.infos = state.infos.map((m) => m.id === action.payload.id ? action.payload : m)
+      crudInfo(state.infos);
     },
 
 
