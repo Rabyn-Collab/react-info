@@ -1,10 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import infoReducer from './infoSlice';
+import { movieApi } from "./movie_api";
+
 
 
 
 export const store = configureStore({
   reducer: {
-    info: infoReducer
-  }
+    [movieApi.reducerPath]: movieApi.reducer,
+
+  },
+  middleware: (getDefault) => getDefault().concat([
+    movieApi.middleware
+  ])
 })
