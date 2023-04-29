@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import MovieCategory from './pages/MovieCategory'
 import MovieDetail from './pages/MovieDetail'
+import MoviePage from './pages/MoviePage'
+import SearchMovie from './pages/SearchMovie'
 
 
 const App = () => {
@@ -17,6 +19,8 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path='movie/:category' element={<MovieCategory />} />
           <Route path='movie/detail/:id' element={<MovieDetail />} />
+          <Route path='movie/:category/:page' element={<MoviePage />} />
+          <Route path='movie/search/:searchText' element={<SearchMovie />} />
           <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>

@@ -11,7 +11,6 @@ export const movieApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
   endpoints: (builder) => ({
 
-
     getTrending: builder.query({
       query: (query) => ({
         url: '/trending/all/day',

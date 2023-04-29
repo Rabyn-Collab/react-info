@@ -1,14 +1,13 @@
 import React from 'react'
-import { useGetTrendingQuery } from '../features/movie_api';
-import { useNavigate } from 'react-router';
+import { useGetSearchMovieQuery } from '../features/movie_api'
+import { useNavigate, useParams } from 'react-router';
 
+const SearchMovie = () => {
 
-const Home = () => {
-
-  const { isError, isLoading, error, data } = useGetTrendingQuery();
-
-
+  const { searchText } = useParams();
+  const { isLoading, data } = useGetSearchMovieQuery(searchText);
   const nav = useNavigate();
+  console.log(data);
 
   if (isLoading) {
     return <div className='h-[500px] w-[500px] mx-auto top-10'>
@@ -31,4 +30,5 @@ const Home = () => {
   )
 }
 
-export default Home
+
+export default SearchMovie

@@ -1,11 +1,13 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router'
-import { useGetMovieByCategoryQuery } from '../features/movie_api';
 
-const MovieCategory = () => {
-  const { category } = useParams();
+import { useGetMovieByPageQuery } from '../features/movie_api';
+
+const MoviePage = () => {
   const nav = useNavigate();
-  const { isError, isLoading, error, data } = useGetMovieByCategoryQuery(category);
+  const { category, page } = useParams();
+  const { isLoading, data } = useGetMovieByPageQuery({ category, page })
+  console.log(data);
   if (isLoading) {
     return <div className='h-[500px] w-[500px] mx-auto top-10'>
       <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_17BtrJ.json" background="transparent" speed="1" loop autoplay></lottie-player>
@@ -29,7 +31,7 @@ const MovieCategory = () => {
       <div className='flex justify-center space-x-7 pb-5'>
         {data?.page > 1 && <button>Prev</button>}
         <h1>{data?.page}</h1>
-        <button onClick={() => nav(`/movie/${category}/${data.page + 1}`)}>Next</button>
+        <button onClick={() => nav(`/movie/${category}/${data?.page + 1}`)}>Next</button>
       </div>
 
 
@@ -37,4 +39,5 @@ const MovieCategory = () => {
   )
 }
 
-export default MovieCategory
+export default MoviePage
+
