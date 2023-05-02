@@ -1,15 +1,25 @@
 import React from 'react'
-import { useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import { useGetMovieVideoQuery } from '../features/movie_api';
 
 const MovieDetail = () => {
   const { id } = useParams();
-  const { data } = useGetMovieVideoQuery(id);
+  const { state } = useLocation();
+  const { data, isLoading } = useGetMovieVideoQuery(id);
 
+  if (isLoading) {
+    return <div className='h-[500px] w-[500px] mx-auto top-10'>
+      <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_17BtrJ.json" background="transparent" speed="1" loop autoplay></lottie-player>
+    </div>
+  }
 
   return (
-    <div>
-      <iframe src={`https://www.youtube.com/embed/${data?.results[0].key}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w600_and_h900_bestv2${state.backdrop_path})` }} className='bg-no-repeat h-screen absolute top-0 w-[100%] bg-cover'>
+
+      <div className='w-[70%] p-5 mt-[5%]'>
+        <iframe src={`https://www.youtube.com/embed/${data?.results[0]?.key}`} className='aspect-video w-full' allowFullScreen></iframe>
+      </div>
+
 
     </div>
   )
